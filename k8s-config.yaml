@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ms-vindecode
+  namespace: default
+data:
+  SERVICE_API_KEY: apikey
+

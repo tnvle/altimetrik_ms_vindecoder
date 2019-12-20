@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-vindecode
+  labels:
+    app: ms-vindecode
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-vindecode
+  template:
+    metadata:
+      labels:
+        app: ms-vindecode
+    spec:
+      containers:
+        - name: ms-vindecode
+          image: nhatvanonline/vindecoderms:1.0.0
+          env:
+            - name: SERVER_PORT
+              value: "8080"
+            - name: SERVICE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: ms-vindecode
+                  key: SERVICE_API_KEY
+          envFrom:
+            - configMapRef:
+                name: ms-vindecode
+
